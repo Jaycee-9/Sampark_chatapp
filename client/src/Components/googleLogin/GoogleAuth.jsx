@@ -1,15 +1,19 @@
 import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
+import Footer from "../footer/footer";
 function GoogleAuth() {
   const handleLoginSuccess = (res) => {
-    console.log(res);
+    const loginCredential = res.credential;
+    const decode = jwtDecode(loginCredential);
+    console.log(decode);
   };
   const handleError = (res) => {
     console.log("Login failed.", res);
   };
   return (
     <div className="bg-slate-700 w-full h-[100vh] p-8">
-      <div className="max-w-[800px]  flex mx-auto relative top-20 rounded-3xl shadow-2xl max-lg:flex-col max-lg:py-9">
+      <div className="max-w-[800px]  flex mx-auto relative top-20 rounded-3xl shadow-2xl max-lg:top-0 max-lg:flex-col max-lg:py-9">
         <img
           src="/loginPage/sampark_1.jpg"
           alt="login-image"
@@ -23,6 +27,7 @@ function GoogleAuth() {
           <GoogleLogin onSuccess={handleLoginSuccess} onError={handleError} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
