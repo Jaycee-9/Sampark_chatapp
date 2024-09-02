@@ -1,12 +1,18 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { userLogin } from "../../service/api";
+import { useNavigate } from "react-router-dom";
 
 import Footer from "../footer/footer";
+
 function GoogleAuth() {
-  const handleLoginSuccess = (res) => {
+  const navigate = useNavigate();
+  const handleLoginSuccess = async (res) => {
     const loginCredential = res.credential;
     const decode = jwtDecode(loginCredential);
-    console.log(decode);
+    const userData = await userLogin(decode);
+    localStorage.setItem("user", JSON.stringify(userData.data));
+    navigate("/");
   };
   const handleError = (res) => {
     console.log("Login failed.", res);
@@ -21,7 +27,7 @@ function GoogleAuth() {
         />
 
         <div className="max-w-[400px] mx-auto h-auto my-auto p-4 relative bg-white rounded-lg max-lg:mt-[70px]">
-          <h1 className="absolute right-[45px] bottom-24 text-3xl text-white">
+          <h1 className="absolute right-[45px] bottom-24 text-3xl text-white max-lg:text-xl max-lg:right-[63px]">
             Sampark
           </h1>
           <GoogleLogin onSuccess={handleLoginSuccess} onError={handleError} />
