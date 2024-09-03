@@ -1,8 +1,15 @@
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 
 function UserImgMenu({ open, handleClose, handleClick, anchorEl }) {
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+  const logOut = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <div>
       <button
@@ -31,7 +38,14 @@ function UserImgMenu({ open, handleClose, handleClick, anchorEl }) {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            logOut();
+          }}
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </div>
   );

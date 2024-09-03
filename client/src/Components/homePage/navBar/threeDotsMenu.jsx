@@ -1,6 +1,12 @@
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 function ThreeDotsMenu({ open, handleClick, handleClose, anchorEl }) {
+  const navigate = useNavigate();
+  const logOut = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
   return (
     <div>
       <button
@@ -23,7 +29,14 @@ function ThreeDotsMenu({ open, handleClick, handleClose, anchorEl }) {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            logOut();
+          }}
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </div>
   );
