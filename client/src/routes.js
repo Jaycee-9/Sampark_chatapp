@@ -8,6 +8,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ProtectedRoutes } from "./utils/ProtectedRoutes";
 
 import GoogleAuth from "./Components/googleLogin/GoogleAuth";
+import HomePage from "./Components/homePage/HomePage";
+
 const clientId =
   "1034152152994-j95baiu7ibrpg8f83io948bo63gvu9tm.apps.googleusercontent.com";
 export const route = createBrowserRouter(
@@ -22,7 +24,7 @@ export const route = createBrowserRouter(
         }
       />
       <Route element={<ProtectedRoutes />}>
-        <Route path="/" element={<h1>Hello home</h1>} />
+        <Route path="/" element={<HomePage />} />
       </Route>
     </>
   )
