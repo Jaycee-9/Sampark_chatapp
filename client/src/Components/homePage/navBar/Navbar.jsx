@@ -46,7 +46,9 @@ function Navbar() {
         </div>
       </>
 
-      <h1 className="dekko-text text-white text-3xl">Sampark</h1>
+      <h1 className="dekko-text-regular text-white text-3xl font-normal">
+        Sampark
+      </h1>
     </div>
   );
 }

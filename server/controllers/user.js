@@ -24,3 +24,13 @@ export const userLogin = async (req, res) => {
     return res.status(500).json({ msg: "Something went wrong in userLogin" });
   }
 };
+
+export const getchats = async (req, res) => {
+  try {
+    const userChats = await User.find({});
+    return res.status(200).json(userChats);
+  } catch (error) {
+    console.error("Error in fetching chats:", error);
+    return res.status(500).json({ msg: "Something went wrong in userLogin" });
+  }
+};

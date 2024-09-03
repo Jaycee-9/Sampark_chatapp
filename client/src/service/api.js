@@ -10,3 +10,12 @@ export const userLogin = async (credentials) => {
     console.log("axios api call error", error.message);
   }
 };
+
+export const getUserChats = async () => {
+  try {
+    const response = await axios.get(`${URL}/getchats`);
+    return response;
+  } catch (error) {
+    console.log("axios api call error", error.message);
+  }
+};
